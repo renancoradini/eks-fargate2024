@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: staging
+spec:
+  selector:
+    matchLabels:
+      run: nginx
+  # remove replica if using gitops
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: nginx
+    spec:
+      containers:
+      - name: nginx-container
+        image: 654654254896.dkr.ecr.us-west-2.amazonaws.com/ecrrepo2:nginxdenzel2
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 200m
+            memory: 256Mi
+          requests:
+            cpu: 200m
+            memory: 256Mi

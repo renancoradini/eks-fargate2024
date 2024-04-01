@@ -1,0 +1,12 @@
+---
+#Improve Stability with Pod Disruption Budget¶
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: php-apache-poddisruption
+  namespace: staging
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      run: php-apache
